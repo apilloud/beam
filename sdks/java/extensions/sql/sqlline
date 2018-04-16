@@ -41,6 +41,9 @@ if [ "$cygwin" ]; then
   VM_OPTS=-Djline.terminal=jline.UnixTerminal
 fi
 
-exec java $VM_OPTS -cp "${CP}" sqlline.SqlLine "$@"
+echo "!connect jdbc:calcite:parserFactory=org.apache.beam.sdk.extensions.sql.impl.parser.impl.BeamSqlParserImpl#FACTORY admin admin"
+echo "CREATE TABLE test (id INTEGER) TYPE 'csv' LOCATION '/tmp/table';"
+echo "SELECT * FROM test;"
+exec java $VM_OPTS -cp "${CP}" sqlline.SqlLine -u jdbc:calcite:parserFactory=org.apache.beam.sdk.extensions.sql.impl.parser.impl.BeamSqlParserImpl#FACTORY -n admin -p admin "$@"
 
 # End sqlline

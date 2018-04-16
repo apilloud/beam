@@ -32,6 +32,7 @@ import org.apache.beam.sdk.extensions.sql.impl.rel.BeamIOSourceRel;
 import org.apache.beam.sdk.extensions.sql.impl.utils.CalciteUtils;
 import org.apache.beam.sdk.extensions.sql.meta.Column;
 import org.apache.beam.sdk.extensions.sql.meta.Table;
+import org.apache.beam.sdk.extensions.sql.meta.provider.text.TextTableProvider;
 import org.apache.calcite.adapter.java.AbstractQueryableTable;
 import org.apache.calcite.jdbc.CalcitePrepare;
 import org.apache.calcite.jdbc.CalciteSchema;
@@ -143,7 +144,8 @@ public class SqlCreateTable extends SqlCreate
     }
     // Table does not exist. Create it.
     pair.left.add(pair.right,
-        new BeamCalciteTable(null));
+        new BeamCalciteTable(
+            TextTableProvider.INSTANCE.buildBeamSqlTable(toTable())));
   }
 
   private String getString(SqlNode n) {

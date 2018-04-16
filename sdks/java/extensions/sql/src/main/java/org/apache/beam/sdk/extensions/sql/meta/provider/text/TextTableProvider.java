@@ -45,6 +45,7 @@ import org.apache.commons.csv.CSVFormat;
  * }</pre>
  */
 public class TextTableProvider implements TableProvider {
+  public static final TableProvider INSTANCE = new TextTableProvider();
 
   @Override public String getTableType() {
     return "text";
