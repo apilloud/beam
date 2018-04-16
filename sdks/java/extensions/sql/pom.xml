@@ -424,5 +424,10 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.12</version>
     </dependency>
+    <dependency>
+      <groupId>sqlline</groupId>
+      <artifactId>sqlline</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
