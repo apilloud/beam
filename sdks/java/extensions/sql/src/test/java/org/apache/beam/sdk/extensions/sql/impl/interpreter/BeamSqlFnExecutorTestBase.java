@@ -83,7 +83,7 @@ public class BeamSqlFnExecutorTestBase {
             .defaultSchema(schema)
             .traitDefs(traitDefs)
             .context(Contexts.EMPTY_CONTEXT)
-            .ruleSets(BeamRuleSets.getRuleSets(sqlEnv))
+            .ruleSets(BeamRuleSets.RULE_SETS)
             .costFactory(null)
             .typeSystem(BeamRelDataTypeSystem.BEAM_REL_DATATYPE_SYSTEM)
             .build();

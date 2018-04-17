@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.apache.beam.sdk.Pipeline;
-import org.apache.beam.sdk.extensions.sql.impl.BeamSqlEnv;
 import org.apache.beam.sdk.extensions.sql.impl.rel.BeamLogicalConvention;
 import org.apache.beam.sdk.extensions.sql.impl.rel.BeamRelNode;
 import org.apache.beam.sdk.values.PCollection;
@@ -69,7 +68,7 @@ public class BeamQueryPlanner {
   public static final JavaTypeFactory TYPE_FACTORY = new JavaTypeFactoryImpl(
       RelDataTypeSystem.DEFAULT);
 
-  public BeamQueryPlanner(BeamSqlEnv sqlEnv, SchemaPlus schema) {
+  public BeamQueryPlanner(SchemaPlus schema) {
     String defaultCharsetKey = "saffron.default.charset";
     if (System.getProperty(defaultCharsetKey) == null) {
       System.setProperty(defaultCharsetKey, ConversionUtil.NATIVE_UTF16_CHARSET_NAME);
@@ -95,7 +94,7 @@ public class BeamQueryPlanner {
             .defaultSchema(schema)
             .traitDefs(traitDefs)
             .context(Contexts.EMPTY_CONTEXT)
-            .ruleSets(BeamRuleSets.getRuleSets(sqlEnv))
+            .ruleSets(BeamRuleSets.RULE_SETS)
             .costFactory(null)
             .typeSystem(BeamRelDataTypeSystem.BEAM_REL_DATATYPE_SYSTEM)
             .operatorTable(new ChainedSqlOperatorTable(sqlOperatorTables))
@@ -115,8 +114,8 @@ public class BeamQueryPlanner {
    * which is linked with the given {@code pipeline}. The final output stream is returned as
    * {@code PCollection} so more operations can be applied.
    */
-  public PCollection<Row> compileBeamPipeline(String sqlStatement, Pipeline basePipeline
-      , BeamSqlEnv sqlEnv) throws Exception {
+  public PCollection<Row> compileBeamPipeline(String sqlStatement, Pipeline basePipeline)
+      throws Exception {
     BeamRelNode relNode = convertToBeamRel(sqlStatement);
 
     // the input PCollectionTuple is empty, and be rebuilt in BeamIOSourceRel.

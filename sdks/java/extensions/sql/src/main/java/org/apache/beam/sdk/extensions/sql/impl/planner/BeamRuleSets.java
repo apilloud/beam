@@ -17,7 +17,6 @@
  */
 package org.apache.beam.sdk.extensions.sql.impl.planner;
 
-import org.apache.beam.sdk.extensions.sql.impl.BeamSqlEnv;
 import org.apache.beam.sdk.extensions.sql.impl.rel.BeamRelNode;
 import org.apache.beam.sdk.extensions.sql.impl.rule.BeamAggregationRule;
 import org.apache.beam.sdk.extensions.sql.impl.rule.BeamEnumerableConverterRule;
@@ -39,8 +38,8 @@ import org.apache.calcite.tools.RuleSets;
  */
 public class BeamRuleSets {
 
-  public static RuleSet[] getRuleSets(BeamSqlEnv sqlEnv) {
-    return new RuleSet[] {
+  public static final RuleSet[] RULE_SETS =
+    new RuleSet[] {
       RuleSets.ofList(
           BeamProjectRule.INSTANCE,
           BeamFilterRule.INSTANCE,
@@ -53,5 +52,4 @@ public class BeamRuleSets {
           BeamJoinRule.INSTANCE,
           BeamEnumerableConverterRule.INSTANCE)
     };
-  }
 }
