@@ -28,6 +28,7 @@ import org.apache.beam.sdk.extensions.sql.impl.rule.BeamProjectRule;
 import org.apache.beam.sdk.extensions.sql.impl.rule.BeamSortRule;
 import org.apache.beam.sdk.extensions.sql.impl.rule.BeamUnionRule;
 import org.apache.beam.sdk.extensions.sql.impl.rule.BeamValuesRule;
+import org.apache.calcite.plan.RelOptPlanner;
 import org.apache.calcite.rel.RelNode;
 import org.apache.calcite.tools.RuleSet;
 import org.apache.calcite.tools.RuleSets;
@@ -52,4 +53,17 @@ public class BeamRuleSets {
           BeamJoinRule.INSTANCE,
           BeamEnumerableConverterRule.INSTANCE)
     };
+
+  public static void register(RelOptPlanner planner) {
+    planner.addRule(BeamAggregationRule.INSTANCE);
+    planner.addRule(BeamFilterRule.INSTANCE);
+    planner.addRule(BeamIntersectRule.INSTANCE);
+    planner.addRule(BeamJoinRule.INSTANCE);
+    planner.addRule(BeamMinusRule.INSTANCE);
+    planner.addRule(BeamProjectRule.INSTANCE);
+    planner.addRule(BeamSortRule.INSTANCE);
+    planner.addRule(BeamUnionRule.INSTANCE);
+    planner.addRule(BeamValuesRule.INSTANCE);
+    planner.addRule(BeamEnumerableConverterRule.INSTANCE);
+   }
 }

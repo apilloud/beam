@@ -19,6 +19,7 @@ package org.apache.beam.sdk.extensions.sql.impl.rel;
 
 import com.google.common.base.Joiner;
 import org.apache.beam.sdk.extensions.sql.BeamSqlTable;
+import org.apache.beam.sdk.extensions.sql.impl.planner.BeamRuleSets;
 import org.apache.beam.sdk.extensions.sql.impl.utils.CalciteUtils;
 import org.apache.beam.sdk.transforms.PTransform;
 import org.apache.beam.sdk.values.PCollection;
@@ -26,6 +27,7 @@ import org.apache.beam.sdk.values.PCollectionTuple;
 import org.apache.beam.sdk.values.Row;
 import org.apache.beam.sdk.values.TupleTag;
 import org.apache.calcite.plan.RelOptCluster;
+import org.apache.calcite.plan.RelOptPlanner;
 import org.apache.calcite.plan.RelOptTable;
 import org.apache.calcite.rel.core.TableScan;
 
@@ -41,6 +43,12 @@ public class BeamIOSourceRel extends TableScan implements BeamRelNode {
       RelOptCluster cluster, RelOptTable table, BeamSqlTable sqlTable) {
     super(cluster, cluster.traitSetOf(BeamLogicalConvention.INSTANCE), table);
     this.sqlTable = sqlTable;
+  }
+
+  @Override
+  public void register(RelOptPlanner planner) {
+    BeamRuleSets.register(planner);
+    super.register(planner);
   }
 
   @Override
