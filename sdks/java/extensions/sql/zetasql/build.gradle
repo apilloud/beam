@@ -53,3 +53,8 @@ dependencies {
   testRuntimeClasspath library.java.slf4j_jdk14
 }
 
+repositories {
+  maven {
+    url "https://oss.sonatype.org/content/repositories/comgooglezetasql-1024"
+  }
+}
