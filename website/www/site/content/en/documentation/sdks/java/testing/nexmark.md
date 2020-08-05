@@ -640,22 +640,13 @@ Each dashboard contains:
 
 ### Performance dashboards links
 
-[Nexmark performance direct runner](https://apache-beam-testing.appspot.com/explore?dashboard=5084698770407424)
+[Nexmark performance Java](http://metrics.beam.apache.org/d/ahuaA_zGz/nexmark)
 
-[Nexmark performance flink runner](https://apache-beam-testing.appspot.com/explore?dashboard=5699257587728384)
-
-[Nexmark performance spark runner](https://apache-beam-testing.appspot.com/explore?dashboard=5138380291571712)
-
-[Nexmark performance dataflow runner](https://apache-beam-testing.appspot.com/explore?dashboard=5670405876482048)
-
+[Nexmark performance SQL](http://metrics.beam.apache.org/d/OG-w5jzGz/nexmark-sql)
 
 ### Output size dashboards links
 
-[Nexmark output size direct runner](https://apache-beam-testing.appspot.com/explore?dashboard=5099379773931520)
+[Nexmark output size Java](http://metrics.beam.apache.org/d/FqhR3rkMk/nexmark-output-size)
 
-[Nexmark output size flink runner](https://apache-beam-testing.appspot.com/explore?dashboard=5731568492478464)
-
-[Nexmark output size spark runner](https://apache-beam-testing.appspot.com/explore?dashboard=5163657986048000)
-
-[Nexmark output size dataflow runner](https://apache-beam-testing.appspot.com/explore?dashboard=5647201107705856)
+[Nexmark output size SQL](http://metrics.beam.apache.org/d/BKUce9kGz/nexmark-sql-output-size)
 
